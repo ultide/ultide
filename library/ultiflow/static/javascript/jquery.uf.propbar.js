@@ -1,4 +1,4 @@
-$(function() {
+define(['app', 'ultiflow'], function( app ) {
   $.widget( "ultiflow.uf_propbar", {
     options: {
       labels: {
@@ -23,11 +23,11 @@ $(function() {
       this.els.nothing = $('<div class="nothing_selected"><span>'+this.options.labels.nothingSelected+'</span></div>');
       this.els.nothing.appendTo(this.element);
       
-      ufApp.onEvent('operator_select', function(e, operatorId) {
+      app.onEvent('ultiflow::operator_select', function(e, operatorId) {
         self.displayOperatorParameters(operatorId);
       });
       
-      ufApp.onEvent('operator_unselect', function(e) {
+      app.onEvent('ultiflow::operator_unselect', function(e) {
         if (self.operatorId != null) {
           self.regenerateParameters();
           self.els.content.empty();
@@ -36,11 +36,11 @@ $(function() {
         }
       });
       
-      ufApp.onEvent('link_select', function(e, linkId) {
+      app.onEvent('ultiflow::link_select', function(e, linkId) {
         self.displayLinkParameters(linkId);
       });
       
-      ufApp.onEvent('link_unselect', function(e) {
+      app.onEvent('ultiflow::link_unselect', function(e) {
         if (self.linkId != null) {
           self.els.content.empty();
           self.els.nothing.show();
@@ -57,7 +57,7 @@ $(function() {
       this.linkId = linkId;
       this.operatorId = null;
       this.els.nothing.hide();
-      var processData = ufApp.getOpenedProcessData();
+      var processData = ultiflow.getOpenedProcessData();
       var linkData = processData.process.links[linkId];
       
       this.els.content.empty();
@@ -66,7 +66,7 @@ $(function() {
       $mainPanel.appendTo(this.els.content);
       
       var $colorInput = $('<input type="color" class="form-control"/>');
-      $colorInput.val(ufApp.ui.flowchart.flowchartMethod('getLinkMainColor', linkId));
+      $colorInput.val(ultiflow.ui.flowchart.flowchartMethod('getLinkMainColor', linkId));
       var $colorParameter = this.generateParameterField('Color:', $colorInput);
       $colorParameter.appendTo($parametersList);
       
@@ -76,11 +76,11 @@ $(function() {
       $actionsParameter.appendTo($parametersList);
       
       $deleteButton.click(function() {
-        ufApp.triggerEvent('delete_selected');
+        app.triggerEvent('ultiflow::delete_selected');
       });
       
       $colorInput.change(function() {
-        ufApp.ui.flowchart.els.flowchart.flowchart('setLinkMainColor', linkId, $colorInput.val());
+        ultiflow.ui.flowchart.els.flowchart.flowchart('setLinkMainColor', linkId, $colorInput.val());
       });
       
       
@@ -91,11 +91,11 @@ $(function() {
       this.linkId = null;
       this.paramKeyToModule = {};
       this.els.nothing.hide();
-      var processData = ufApp.getOpenedProcessData();
+      var processData = ultiflow.getOpenedProcessData();
       var operatorData = processData.process.operators[operatorId];
       var operatorType = operatorData.type;
-      var operatorProperties = ufApp.ui.flowchart.flowchartMethod('getOperatorFullProperties', operatorData);
-      var operatorTypeData = ufApp.getOperatorInfos(operatorType);
+      var operatorProperties = ultiflow.ui.flowchart.flowchartMethod('getOperatorFullProperties', operatorData);
+      var operatorTypeData = ultiflow.getOperatorInfos(operatorType);
       
       this.els.content.empty();
       var $parametersList = $('<div class="uf-parameters-list"></div>');
@@ -103,7 +103,7 @@ $(function() {
       $mainPanel.appendTo(this.els.content);
       
       var $titleInput = $('<input type="text" class="form-control"/>');
-      $titleInput.val(ufApp.ui.flowchart.flowchartMethod('getOperatorTitle', operatorId));
+      $titleInput.val(ultiflow.ui.flowchart.flowchartMethod('getOperatorTitle', operatorId));
       var $titleParameter = this.generateParameterField('Title:', $titleInput);
       $titleParameter.appendTo($parametersList);
       
@@ -116,11 +116,11 @@ $(function() {
       $actionsParameter.appendTo($parametersList);
       
       $deleteButton.click(function() {
-        ufApp.triggerEvent('delete_selected');
+        app.triggerEvent('ultiflow::delete_selected');
       });
       
       $titleInput.keyup(function() {
-        ufApp.ui.flowchart.els.flowchart.flowchart('setOperatorTitle', operatorId, $titleInput.val());
+        ultiflow.ui.flowchart.els.flowchart.flowchart('setOperatorTitle', operatorId, $titleInput.val());
       });
       
       if (typeof operatorTypeData.parameters != 'undefined') {
@@ -148,7 +148,7 @@ $(function() {
     
     fillPropertyContent: function(operatorId, propKey, propInfos, $divs) {
       var self = this;
-      var processData = ufApp.getOpenedProcessData().process;
+      var processData = ultiflow.getOpenedProcessData().process;
       
       var config = {};
       if (typeof propInfos.config != 'undefined') {
@@ -161,7 +161,7 @@ $(function() {
         value = processData.parameters[operatorId][propKey];
       }
       
-      ufApp.loadFieldType(propInfos.type, function(module) {
+      ultiflow.loadFieldType(propInfos.type, function(module) {
         
         var cbReady = function(inst) {
           if (value === null) {
@@ -187,7 +187,7 @@ $(function() {
     
     regenerateParameters: function() {
       if (this.operatorId != null) {
-        var processData = ufApp.getOpenedProcessData().process;
+        var processData = ultiflow.getOpenedProcessData().process;
         var parameters = {};
         for (var paramKey in this.paramKeyToModule) {
           parameters[paramKey] = this.paramKeyToModule[paramKey].getValue();
@@ -197,7 +197,7 @@ $(function() {
         }
         
         processData.parameters[this.operatorId] = parameters;
-        ufApp.triggerEvent('process_change_detected');
+        app.triggerEvent('ultiflow::process_change_detected');
       }
     },
     

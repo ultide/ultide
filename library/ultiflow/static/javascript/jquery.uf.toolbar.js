@@ -1,4 +1,4 @@
-$(function() {
+define(['app', 'ultiflow', 'ultiflow-tree'], function( app, ultiflow ) {
   $.widget( "ultiflow.uf_toolbar", {
     options: {
 
@@ -24,8 +24,8 @@ $(function() {
       
       this.els.trees.workspace.on('select_node.jstree', function(node, selectedInfos, event) {
         var selected = selectedInfos.selected[0];
-        if (ufApp.isOperatorDefined(selected)) {
-          ufApp.openProcess(selected);
+        if (ultiflow.isOperatorDefined(selected)) {
+          ultiflow.openProcess(selected);
         }
       });
       
@@ -41,12 +41,12 @@ $(function() {
     
     refreshTrees: function() {
       var self = this;
-      ufApp.getOperators(function(data) {
+      ultiflow.getOperators(function(data) {
         var keys = ['library', 'workspace'];
         for (var i = 0; i < keys.length; i++) {
           var key = keys[i];
           
-          var treeData = ufApp.treeDataFromOperatorData(data.tree[key], data.list, key);
+          var treeData = ultiflow.treeDataFromOperatorData(data.tree[key], data.list, key);
           
           self.els.trees[key].jstree(true).settings.core.data = treeData;
           self.els.trees[key].jstree(true).refresh(true);

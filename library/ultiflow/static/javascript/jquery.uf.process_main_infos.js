@@ -1,4 +1,4 @@
-$(function() {
+define(['app'], function( app ) {
   $.widget( "ultiflow.uf_process_main_infos", {
     options: {
     },
@@ -21,15 +21,15 @@ $(function() {
       this.els.path.appendTo(this.element);
       
       var self = this;
-      ufApp.onEvent('process_open', function(e, operatorData) {
+      app.onEvent('ultiflow::process_open', function(e, operatorData) {
         self.setProcess(operatorData);
       });
       
-      ufApp.onEvent('process_change_detected', function(e) {
+      app.onEvent('ultiflow::process_change_detected', function(e) {
         self.setState('saving');
       });
       
-      ufApp.onEvent('process_saved', function(e, success) {
+      app.onEvent('ultiflow::process_saved', function(e, success) {
         if (success) {
           self.setState('saved', 3000);
         } else {

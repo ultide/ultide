@@ -1,4 +1,8 @@
-$(function() {
+define([
+  'app',
+  'ultiflow',
+  'ultiflow-lib-panzoom',
+  'ultiflow-lib-flowchart'], function( app ) {
   $.widget( "ultiflow.uf_flowchart", {
     options: {
 
@@ -75,19 +79,19 @@ $(function() {
         self.changeDetected();
       };
       options.onOperatorSelect = function(operatorId) {
-        ufApp.triggerEvent('operator_select', operatorId);
+        app.triggerEvent('ultiflow::operator_select', operatorId);
         return true;
       }
       options.onOperatorUnselect = function() {
-        ufApp.triggerEvent('operator_unselect');
+        app.triggerEvent('ultiflow::operator_unselect');
         return true;
       }
       options.onLinkSelect = function(linkId) {
-        ufApp.triggerEvent('link_select', linkId);
+        app.triggerEvent('ultiflow::link_select', linkId);
         return true;
       }
       options.onLinkUnselect = function() {
-        ufApp.triggerEvent('link_unselect');
+        app.triggerEvent('ultiflow::link_unselect');
         return true;
       }
 
@@ -95,7 +99,7 @@ $(function() {
       // Apply the plugin on a standard, empty div...
       $flowchart.flowchart(options);
       
-      ufApp.ui.flowchart = this;      
+      ultiflow.ui.flowchart = this;      
       
       $(document).keydown(function(e) {
         if (e.keyCode == 8 && $(':focus').length == 0) {
@@ -110,11 +114,11 @@ $(function() {
         }
       });
       
-      ufApp.onEvent('process_open', function(e, processData) {
+      app.onEvent('ultiflow::process_open', function(e, processData) {
         self.setData(processData.process);
       });
       
-      ufApp.onEvent('delete_selected', function() {
+      app.onEvent('ultiflow::delete_selected', function() {
         self.els.flowchart.flowchart('deleteSelected');
       });
       
@@ -204,7 +208,7 @@ $(function() {
           //this.postProcessOperatorData(operator);
         }
       }
-      ufApp.getOperators(function(operators) {
+      ultiflow.getOperators(function(operators) {
         data.operatorTypes = operators.list;
         self.els.flowchart.flowchart('setData', data);
       });
@@ -224,19 +228,6 @@ $(function() {
       return data;
     },
     
-    /*
-    postProcessOperatorData: function(operator) {
-      if (typeof operator.type != 'undefined') {
-        var typeProperties = ufApp.getOperatorInfos(operator.type);
-        var operatorProperties = {};
-        if (typeof operator.properties != 'undefined') {
-          operatorProperties = operator.properties;
-        }
-        operator.properties = $.extend({}, typeProperties, operatorProperties);
-      }
-    },
-    */
-    
     addOperator: function(operatorData) {
       //this.postProcessOperatorData(operatorData);
       // todo: check same ids ?
@@ -254,24 +245,14 @@ $(function() {
       }
       var self = this;
       
-      var currentProcessData = ufApp.getOpenedProcessData();
+      var currentProcessData = ultiflow.getOpenedProcessData();
       var flowchartData = this.getData();
       var flowchartProcess = $.extend(true, {}, flowchartData);
       
       currentProcessData.process.operators = flowchartData.operators;
       currentProcessData.process.links = flowchartData.links;
       
-      ufApp.triggerEvent('process_change_detected');
-      /*
-      if (this.timeoutChangeId != null) {
-        clearTimeout(this.timeoutChangeId);
-      }
-      
-      this.timeoutChangeId = setTimeout(function() {
-        self.timeoutChangeId = null;
-        self.save();
-      }, this.timeoutChangeLength);
-      */
+      app.triggerEvent('ultiflow::process_change_detected');
       
       this._refreshMiniViewContent(flowchartData);
     },
@@ -279,13 +260,5 @@ $(function() {
     flowchartMethod: function(methodName, data) {
       return this.els.flowchart.flowchart(methodName, data);
     }
-    /*,
-    save: function() {
-      
-      ufApp.saveCurrentProcess(function(success) {
-        ufApp.triggerEvent('process_saved', success);
-      });
-    }
-    */
   });
 });

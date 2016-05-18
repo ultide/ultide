@@ -1,4 +1,4 @@
-$(function() {
+define(['app', 'ultiflow-lib-jstree'], function( app ) {
   $.widget( "ultiflow.uf_tree", {
     options: {
     },
@@ -44,17 +44,8 @@ $(function() {
         $(document)
         .on('dnd_start.vakata', function (e, data) {
           var data = {type: data.data.nodes[0]};
-          operatorHelper = ufApp.ui.flowchart.getOperatorElement(data);
+          operatorHelper = ultiflow.ui.flowchart.getOperatorElement(data);
           defaultHelper = null;
-          /*
-          console.log(data);
-          var operatorId = data.data.nodes[0];
-          console.log(operatorId, ufApp.isOperatorDefined(operatorId));
-          if (ufApp.isOperatorDefined(operatorId)) {
-            data.helper.text('toto');
-          
-          }
-          */
         })
         .on('dnd_move.vakata', function (e, data) {
           if (defaultHelper == null) {
@@ -78,7 +69,7 @@ $(function() {
             if(t.closest('.uf-flowchart').length) {
               var elOffset = data.helper.offset();
               
-              var $flowchart = ufApp.ui.flowchart.els.flowchart;
+              var $flowchart = ultiflow.ui.flowchart.els.flowchart;
               var flowchartOffset = $flowchart.offset();
 
               var relativeLeft = elOffset.left - flowchartOffset.left;
@@ -91,7 +82,7 @@ $(function() {
               var data = {type: data.data.nodes[0]};
               data.left = relativeLeft;
               data.top = relativeTop;
-              ufApp.ui.flowchart.addOperator(data);
+              ultiflow.ui.flowchart.addOperator(data);
             }
           }
         });

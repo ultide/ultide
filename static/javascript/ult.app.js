@@ -52,5 +52,13 @@ define([ 'socket-io' ], function( io ) {
     }
   };
   
+  app.onEvent = function(name, cb) {
+    $(document).on('uf:' + name, cb);
+  };
+
+  app.triggerEvent = function(name, params) {
+    $(document).trigger('uf:' + name, params);
+  };
+  
   return app;
 });

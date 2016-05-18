@@ -109,7 +109,6 @@ def modules_static(path):
     module = splitted_path.pop(0)
     
     module_path = session_data['modules_infos'][module]['path'] + os.path.sep + 'static'
-    print module_path
     return send_from_directory(module_path, '/'.join(splitted_path))
   
 
