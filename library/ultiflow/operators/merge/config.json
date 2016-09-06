@@ -1,0 +1,157 @@
+{
+  "id": "ultiflow::merge_data",
+  "title": "Merge data",
+  "type": "operator",
+  "inputs": {
+    "data_1": {
+      "label": "Data 1",
+      "type": "np2d",
+      "category": "table"
+    },
+    "data_2": {
+      "label": "Data 2",
+      "type": "np2d",
+      "category": "table"
+    }
+  },
+  "outputs": {
+    "data": {
+      "label": "Data",
+      "type": "np2d",
+      "category": "table"
+    }
+  },
+  "parameters": [
+    {
+      "title": "Main parameters",
+      "fields": [
+        {
+          "id": "split",
+          "label": "Text example:",
+          "type": "ultiflow::text",
+          "config": {
+            "default": "titi"
+          }
+        },
+        {
+          "id": "split_2",
+          "label": "Slider example:",
+          "type": "ultiflow::slider",
+          "config": {
+            "min": 0,
+            "max": 1,
+            "step": 0.05,
+            "default": 0.75
+          }
+        }
+      ]
+    },
+    {
+      "title": "Secondary parameters",
+      "fields": [
+        {
+          "id": "split_3",
+          "label": "Choices example:",
+          "type": "ultiflow::select",
+          "config": {
+            "options": [
+              {"value": "first", "label": "Premier choix"},
+              {"value": "second", "label": "Deuxième choix"},
+              {"value": "athird", "label": "Troisième choix"}
+            ]
+          }
+        },
+        {
+          "id": "split_4",
+          "label": "Textarea:",
+          "type": "ultiflow::textarea",
+          "config": {
+            "attr": {
+              "rows": 10
+            },
+            "css": {
+              "color": "red"
+            },
+            "default": "Texte par defaut!"
+          }
+        },
+        {
+          "id": "split_6",
+          "label": "Checkboxes:",
+          "type": "ultiflow::choices",
+          "config": {
+            "options": [
+              {"value": "first", "label": "Premier choix"},
+              {"value": "second", "label": "Deuxième choix"},
+              {"value": "third", "label": "Troisième choix"}
+            ],
+            "type": "checkbox",
+            "default": {
+              "first": false,
+              "second": true,
+              "third": false
+            }
+          }
+        },
+        {
+          "id": "split_7",
+          "label": "List:",
+          "type": "ultiflow::list",
+          "config": {
+            "fieldType": "ultiflow::choices",
+            "fieldTypeConfig": {
+              "options": [
+                {"value": "one", "label": "One"},
+                {"value": "two", "label": "Two"},
+                {"value": "three", "label": "Three"}
+              ],
+              "default": {
+                "one": false,
+                "two": false,
+                "three": false
+              }
+            }
+          }
+        },
+        {
+          "id": "asplit_8",
+          "label": "List 2:",
+          "type": "ultiflow::list",
+          "config": {
+            "fieldType": "ultiflow::choices",
+            "fieldTypeConfig": {
+              "options": [
+                {"value": "one", "label": "One"},
+                {"value": "two", "label": "Two"},
+                {"value": "three", "label": "Three"}
+              ],
+              "default": {
+                "one": false,
+                "two": false,
+                "three": false
+              }
+            }
+          }
+        },
+        {
+          "id": "split_9",
+          "label": "File:",
+          "type": "ultiflow::file",
+          "config": {
+            "fileChooser": {
+              "type": "file",
+              "action": "save"
+            }
+          }
+        },
+        {
+          "id": "split_10",
+          "label": "Operator:",
+          "type": "ultiflow::operator",
+          "config": {
+          }
+        }
+      ]
+    }
+  ]
+}

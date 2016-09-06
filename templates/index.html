@@ -9,6 +9,11 @@
     <script src="static/plugins/require.js/require.js"></script>
     <script type="application/javascript">
       require.config({
+        map: {
+          '*': {
+            'css': 'static/plugins/require-css/css'
+          }
+        },
         paths: {
           'jquery': 'static/plugins/jquery/jquery-1.10.2',
           'jquery-ui': 'static/plugins/jquery-ui/jquery-ui',

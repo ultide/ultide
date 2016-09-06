@@ -15,7 +15,7 @@ def initialize_user_session(user, session_data):
     session_data['modules_containers_paths'] = modules_containers_paths
     
 def refresh_users_modules(session_data):
-    modules_infos = {'core': {'main': sys.modules[__name__]}}
+    modules_infos = {'core': {'main': sys.modules[__name__], 'path': 'ultide'}}
     modules_paths = {}
     
     for modules_container_path in session_data['modules_containers_paths']:
@@ -50,10 +50,14 @@ def on_login(data, response, session_data):
         session_data['user'] = user
         connected = True
     response['connected'] = connected
-    
-def on_get_property(data, response, session_data):
+
+def on_set_user_property(data, response, session_data):
     user = session_data['user']
-    response['value'] = user.get_property(data['name'])
+    user.set_property(data['key'], data['value'])
+    
+def on_get_user_property(data, response, session_data):
+    user = session_data['user']
+    response['value'] = user.get_property(data['key'])
         
 def on_get_js(data, response, session_data):
     user = session_data['user']
@@ -64,8 +68,8 @@ def on_get_js(data, response, session_data):
         module_infos = session_data['modules_infos'][module_name]
         if ('config' in module_infos):
             config = module_infos['config']
-            if (hasattr(config, 'require_paths')):
-                require_paths.update(config.require_paths)
+            if (hasattr(config, 'requirejs_paths')):
+                require_paths.update(config.requirejs_paths)
             if (hasattr(config, 'main_js')):
                 main_js.append(config.main_js)
     

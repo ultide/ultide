@@ -1,4 +1,10 @@
-define([ 'app', 'ultiflow-design-view' ], function( app ) {
+define([
+  'app',
+  'ultiflow-design-view',
+  'css!static/modules/ultiflow/css/main',
+  'css!static/modules/ultiflow/plugins/jstree/dist/themes/default/style.min',
+  'css!static/modules/ultiflow/plugins/jquery.flowchart/jquery.flowchart.min.css'
+], function( app ) {
   var $mainView = app.ui.mainView;
   var $mainNavBar = app.ui.mainNavBar;
   
@@ -31,3 +37,24 @@ helper.createPanel = function(title, content) {
 
   return $panel;
 };
+
+helper.treeDataFromOperatorData = function(tree, operators, path) {
+  var res = [];
+  for (var key in tree) {
+    if (tree[key] == true) {
+      res.push({
+        id: key,
+        text: operators[key].title,
+        type: operators[key].type
+      });
+    } else {
+      var newPath = path + '/' + key;
+      res.push({
+        id: newPath,
+        text: key,
+        children: this.treeDataFromOperatorData(tree[key], operators, newPath)
+      });
+    }
+  }
+  return res;
+}

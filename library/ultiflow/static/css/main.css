@@ -1,0 +1,243 @@
+
+.uf-side-bar {
+  position: absolute;
+  top: 0px;
+  overflow: hidden;
+  width: 250px;
+  background: #F9F9F9;
+  height: 100%;
+  padding: 5px;
+}
+
+.uf-propbar {
+  overflow-y: auto;
+}
+
+.uf-side-bar.left {
+  left: 0px;
+  border-right: 1px solid #DDD;
+}
+
+.uf-side-bar.right {
+  right: 0px;
+  border-left: 1px solid #DDD;
+}
+
+
+.nothing_selected {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  left: 0px;
+  padding: 5px;
+  height: 100%;
+  text-align: center;
+  display:table;
+}
+
+.nothing_selected span {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.panel {
+  margin-bottom: 10px;
+}
+
+.jstree-default .jstree-clicked {
+  background: #eee;
+}
+
+.jstree-default .jstree-hovered {
+  background: #f5f5f5;
+}
+
+.panel-content {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow: auto;
+}
+
+.uf-flowchart {
+  width: 2000px;
+  height: 2000px;
+  background: white;
+}
+
+.uf-flowchart-mini-view {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 128px;
+  height: 128px;
+  background: rgba(255,255,255,0.5);
+  border-left: 1px solid #AAA;
+  border-top: 1px solid #AAA;
+  overflow: hidden;
+}
+
+.uf-flowchart-mini-view-focus {
+  position: absolute;
+  border: 1px solid #AAA;
+  box-sizing: border-box;
+}
+
+.uf-flowchart-mini-view-content {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.uf-flowchart-container {
+  position: absolute;
+  left: 250px;
+  right: 250px;
+  top: 40px;
+  bottom: 0px;
+  overflow: hidden;
+  background: repeating-linear-gradient(
+    45deg,
+    #eee,
+    #eee 10px,
+    #e5e5e5 10px,
+    #e5e5e5 20px
+  );
+}
+
+.flowchart-operator-connector:hover {
+  font-weight: bold;
+}
+
+.flowchart-operator-connector-arrow {
+  top: 3px;
+}
+
+.flowchart-operator-connector-small-arrow {
+  top: 8px;
+}
+
+
+
+.uf-flowchart-no-file {
+  position: absolute;
+  top: 0px;
+  left: 250px;
+  right: 0px;
+  height: 100%;
+}
+
+.opened .uf-flowchart-no-file {
+  display: none;
+}
+
+.uf-flowchart-no-file .inside {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  padding-left: 200px;
+  padding-right: 200px;
+  height: 100%;
+  text-align: center;
+  display:table;
+  background: white;
+}
+
+.uf-flowchart-no-file span {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.main_text {
+  font-size: 30px;
+}
+
+
+.uf-process-main-infos {
+  position: absolute;
+  left: 250px;
+  right: 250px;
+  top: 0px;
+  height: 40px;
+  background: #F9F9F9;
+  border-bottom: 1px solid #DDD;
+  padding: 5px;
+  overflow: hidden;
+}
+
+.uf-process-main-infos .uf-process-title {
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.uf-process-main-infos .uf-process-path {
+  margin-top: 5px;
+  float: right;
+}
+
+.uf-process-state {
+  margin-left: 10px;
+  display: none;
+}
+
+.uf-process-state span {
+  display: none;
+}
+
+.uf-process-state-saving {
+  color: #777;
+}
+
+.uf-process-state-saved {
+  color: green;
+}
+
+.uf-process-state-error {
+  color: red;
+}
+
+
+.uf-parameters-list {
+  padding: 5px;
+}
+
+.uf-parameters-list .uf-parameter {
+  margin-bottom: 10px;
+}
+
+.uf-parameters-list .uf-parameter:last-child {
+  margin-bottom: 0px;
+}
+
+.uf-parameters-list button {
+  width: 100%;
+}
+
+.uf-file-chooser-list {
+  height: 200px;
+  overflow-y: auto;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.uf-file-chooser-item {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  cursor: pointer;
+  padding-left: 5px;
+}
+
+.uf-file-chooser-item:hover {
+  background: #EEE;
+}
+
+.uf-file-chooser-item-label {
+  margin-left: 4px;
+}
+
+.uf-file-chooser-item.selected {
+  background: #E0E0E0;
+}
+

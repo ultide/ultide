@@ -1,0 +1,26 @@
+{
+  "id": "ultiflow::save_data",
+  "title": "Save data",
+  "type": "operator",
+  "inputs": {
+    "data": {
+      "label": "Data",
+      "type": "np2d",
+      "category": "table"
+    }
+  },
+  "outputs": {},
+  "parameters": [
+    {
+      "id": "filepath",
+      "label": "Path:",
+      "type": "ultiflow::file",
+      "config": {
+        "fileChooser": {
+          "type": "file",
+          "action": "save"
+        }
+      }
+    }
+  ]
+}

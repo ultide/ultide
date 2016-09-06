@@ -1,4 +1,4 @@
-define(['app', 'ultiflow'], function( app ) {
+define(['app', 'ultiflow'], function( app, ultiflow ) {
   $.widget( "ultiflow.uf_propbar", {
     options: {
       labels: {

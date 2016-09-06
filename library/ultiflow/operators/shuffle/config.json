@@ -1,0 +1,40 @@
+{
+  "id": "ultiflow::shuffle",
+  "title": "Shuffle data",
+  "type": "operator",
+  "inputs": {
+    "input_data_1": {
+      "label": "Data 1",
+      "type": "np2d",
+      "category": "table"
+    },
+    "input_data_2": {
+      "label": "Data 2",
+      "type": "np2d",
+      "category": "table"
+    },
+    "input_data_3": {
+      "label": "Data 3",
+      "type": "np2d",
+      "category": "table"
+    }
+  },
+  "outputs": {
+    "output_data_1": {
+      "label": "Data",
+      "type": "np2d",
+      "category": "table"
+    },
+    "output_data_2": {
+      "label": "Data",
+      "type": "np2d",
+      "category": "table"
+    },
+    "output_data_3": {
+      "label": "Data",
+      "type": "np2d",
+      "category": "table"
+    }
+  },
+  "parameters": {}
+}

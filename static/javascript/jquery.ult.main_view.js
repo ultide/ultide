@@ -27,9 +27,11 @@ define([
     showView: function(name) {
       if (this.currentView != null) {
         this.els.views[this.currentView].hide();
+        this.els.views[this.currentView].trigger('on_view_hide');
       }
       this.currentView = name;
       this.els.views[name].show();
+      this.els.views[name].trigger('on_view_show');
     }
   });
 });

@@ -45,6 +45,7 @@ import os.path
 import ultide.core as core
 import uuid
 import ultide.common as common
+import json
 
 
 app = Flask(__name__)
@@ -72,7 +73,7 @@ sessions_data = {}
 
 def get_init_session_data():
     data = {}
-    data['modules_infos'] = {'core': {'main': core}}
+    data['modules_infos'] = {'core': {'main': core, 'path': 'ultide'}}
     return data
 
 

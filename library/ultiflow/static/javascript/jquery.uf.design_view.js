@@ -3,7 +3,8 @@ define([
   'ultiflow-design-view',
   'ultiflow-process-main-infos',
   'ultiflow-propbar',
-  'ultiflow-toolbar'], function( app ) {
+  'ultiflow-toolbar',
+  'ultiflow-flowchart'], function( app ) {
   $(function() {
     $.widget( "ultiflow.uf_design_view", {
       options: {

@@ -34,6 +34,10 @@ define(['app', 'ultiflow', 'ultiflow-tree'], function( app, ultiflow ) {
         self._refresh();
       });
       
+      this.element.closest('.uf_design_view').on('on_view_show', function() {
+        self._refresh();
+      });
+      
       this._refresh();
       
       this.refreshTrees();
@@ -46,10 +50,11 @@ define(['app', 'ultiflow', 'ultiflow-tree'], function( app, ultiflow ) {
         for (var i = 0; i < keys.length; i++) {
           var key = keys[i];
           
-          var treeData = ultiflow.treeDataFromOperatorData(data.tree[key], data.list, key);
-          
+          var treeData = helper.treeDataFromOperatorData(data.tree[key], data.list, key);
+            
           self.els.trees[key].jstree(true).settings.core.data = treeData;
           self.els.trees[key].jstree(true).refresh(true);
+        
         }
         
         
