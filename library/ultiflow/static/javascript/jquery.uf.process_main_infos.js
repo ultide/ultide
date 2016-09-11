@@ -40,7 +40,7 @@ define(['app'], function( app ) {
     
     setProcess: function(process) {
       this.els.title.text(process.title);
-      this.els.path.text(process.path.main + '://' + process.path.relative);
+      //this.els.path.text(process.path);
     },
     
     setState: function(state, timeout) {

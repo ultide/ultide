@@ -34,7 +34,8 @@ elif async_mode == 'gevent':
     monkey.patch_all()
 
 import time
-from flask import Flask, render_template, session, request, send_from_directory
+from flask import Flask, render_template, session, request, send_from_directory, make_response
+from functools import wraps, update_wrapper
 from flask_socketio import SocketIO, emit, disconnect
 import ultide.config as config
 from flask_user import login_required, UserManager, UserMixin, SQLAlchemyAdapter
@@ -46,6 +47,8 @@ import ultide.core as core
 import uuid
 import ultide.common as common
 import json
+from datetime import datetime
+import sys
 
 
 app = Flask(__name__)
@@ -71,6 +74,21 @@ if not User.query.filter(User.username=='root').first():
 
 sessions_data = {}
 
+
+
+def nocache(view):
+    @wraps(view)
+    def no_cache(*args, **kwargs):
+        response = make_response(view(*args, **kwargs))
+        response.headers['Last-Modified'] = datetime.now()
+        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '-1'
+        return response
+        
+    return update_wrapper(no_cache, view)
+
+
 def get_init_session_data():
     data = {}
     data['modules_infos'] = {'core': {'main': core, 'path': 'ultide'}}
@@ -92,11 +110,14 @@ def msg_received(message):
         data = message['data']
         response_data = {}
         for module_key in session_data['modules_infos']:
+            print 'module:', module_key
             module_infos = session_data['modules_infos'][module_key]
             if ('main' in module_infos):
                 module_py = module_infos['main']
                 if (hasattr(module_py, method)):
+                    print 'module method', module_key, method
                     getattr(module_py, method)(data, response_data, session_data)
+        print response
         response['data'] = response_data
     else:
         response['auth_error'] = True
@@ -104,6 +125,7 @@ def msg_received(message):
     emit('msg', response)
     
 @app.route('/static/modules/<path:path>', methods=['GET'])
+@nocache
 def modules_static(path):
     session_data = sessions_data[session['uuid']]
     splitted_path = path.split('/')

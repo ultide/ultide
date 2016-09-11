@@ -23,6 +23,7 @@ def get_operators_infos(path):
                 config = None
                 with open(config_path, 'r') as f:
                     config = json.load(f)
+                config['path'] = config_path
                 operator_id = config['id']
                 operators_tree[operator_id] = True
                 operators_list[operator_id] = config
@@ -47,7 +48,6 @@ def on_modules_infos(data, response, session_data):
             name = module_infos['config'].name
             operators_path = module_infos['path'] + os.path.sep + 'operators'
             update_operators_infos('library', name, operators_path, operators_list, operators_tree)
-            
     workspace = get_workspace(session_data)
     for dir_name in os.listdir(workspace):
         name = dir_name

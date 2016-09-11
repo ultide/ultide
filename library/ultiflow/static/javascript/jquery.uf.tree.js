@@ -1,4 +1,4 @@
-define(['app', 'ultiflow-lib-jstree'], function( app ) {
+define(['app', 'ultiflow', 'ultiflow-lib-jstree'], function( app, ultiflow ) {
     $.widget( "ultiflow.uf_tree", {
         options: {
         },

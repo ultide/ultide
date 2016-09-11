@@ -58,7 +58,19 @@ def on_set_user_property(data, response, session_data):
 def on_get_user_property(data, response, session_data):
     user = session_data['user']
     response['value'] = user.get_property(data['key'])
-        
+    
+def on_write_file(data, response, session_data):
+    file_path = data['path']
+    content = data['content']
+    response['error'] = False
+    print 'content', content
+    print 'toto'
+    try:
+        with open(file_path, 'w') as outfile:
+            outfile.write(content.encode('utf8'))
+    except:
+        response['error'] = sys.exc_info()[0]
+
 def on_get_js(data, response, session_data):
     user = session_data['user']
     main_js = []

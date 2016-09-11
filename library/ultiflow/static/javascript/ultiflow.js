@@ -1,5 +1,7 @@
 define([ 'app', 'bootstrap' ], function( app ) {
     var ultiflow = {data: {}, ui: {}};
+    
+    ultiflow.timeoutChangeLength = 200;
 
     ultiflow.getModulesInfos = function(cb) {
         var self = this;
@@ -81,6 +83,46 @@ define([ 'app', 'bootstrap' ], function( app ) {
         return res;
     }
     
+    ultiflow.writeFile = function(path, content, cb) {
+        app.sendRequest('write_file', {path: path, content: content}, function(data) {
+            if (data.error) {
+                cb(false);
+            } else {
+                cb(true);
+            }
+        });
+    };
+    
+    
+    
+    ultiflow.saveProcess = function(processId, cb) {
+        var operatorData = this.data.modulesInfos.operators.list[processId];
+        this.writeFile(operatorData.path, JSON.stringify(operatorData), function(success) {
+            cb(success);
+        });
+    };
+
+    ultiflow.saveCurrentProcess = function(cb) {
+        this.saveProcess(this.openedProcess, cb);
+    };
+    
+    
+    app.onEvent('ultiflow::process_change_detected', function(e) {
+        if (ultiflow.timeoutChangeId != null) {
+            clearTimeout(ultiflow.timeoutChangeId);
+        }
+
+        ultiflow.timeoutChangeId = setTimeout(function() {
+            
+            ultiflow.timeoutChangeId = null;
+            ultiflow.saveCurrentProcess(function(success) {
+                app.triggerEvent('ultiflow::process_saved', success);
+            });
+        }, ultiflow.timeoutChangeLength);
+    });
+
+    
+    
     ultiflow.operatorChooser = function(customOptions) {
         var self = this;
         this.getOperators(function(data) {
@@ -146,45 +188,45 @@ define([ 'app', 'bootstrap' ], function( app ) {
 
             var selectedOperatorId = null;
             $tree.on('select_node.jstree', function(e, data) {
-            if (data.node.type != 'default') {
-            $primaryButton.removeClass('disabled');
-            selectedOperatorId = data.node.id;
-            $operatorId.text(data.node.id);
-            } else {
-            $primaryButton.addClass('disabled');
-            selectedOperatorId = null;
-            $operatorId.text('');
-            }
+                if (data.node.type != 'default') {
+                    $primaryButton.removeClass('disabled');
+                    selectedOperatorId = data.node.id;
+                    $operatorId.text(data.node.id);
+                } else {
+                    $primaryButton.addClass('disabled');
+                    selectedOperatorId = null;
+                    $operatorId.text('');
+                }
             });
 
             $tree.on('loaded.jstree', function(e, data) {
-            if (options.operatorId != null) {
-            $tree.jstree('select_node', options.operatorId);
-            }
+                if (options.operatorId != null) {
+                    $tree.jstree('select_node', options.operatorId);
+                }
             });
 
 
             $cancelButton.click(function() {
-            selectedOperatorId = null;
+                selectedOperatorId = null;
             });
 
 
             $primaryButton.click(function() {
-            var $this = $(this);
-            if (!$this.hasClass('disabled')) {
-            //selectedPath = $body.file_chooser('getPath');
-            $modal.modal('hide');
-            }
+                var $this = $(this);
+                if (!$this.hasClass('disabled')) {
+                    //selectedPath = $body.file_chooser('getPath');
+                    $modal.modal('hide');
+                }
             });
 
 
             $modal.modal();
             $modal.on('hidden.bs.modal',function() {
-            options.onSelected(selectedOperatorId);
-            $modal.remove();
+                options.onSelected(selectedOperatorId);
+                $modal.remove();
             });
         });
-        }
+    }
 
 
     return ultiflow;
