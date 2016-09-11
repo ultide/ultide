@@ -151,3 +151,69 @@ See the `demo` module for a full demonstration.
 
 See the `static/javascript/main.js` file in the `demo` module.
 
+Technical documentation of the Ultiflow module
+----------------------------------------------
+
+As explained earlier, Ultiflow is the module handling the flowchart feature. We will address here the most important
+things to know.
+
+### How to add an operator in the library
+
+The ultiflow module looks for the operators in all the modules. In each module, it checks if an `operators` folder exists,
+if it does, it references all folders containing a `config.json`. Each folder constitutes an operator, and the
+`config.json` contains its configuration. It is a dictionnary that looks like this:
+
+```
+{
+    "id": "demo::load_file",
+    "title": "Load file",
+    "type": "operator",
+    "inputs": {},
+    "outputs": {
+        "data": {
+            "label": "Data"
+        }
+    },
+    "parameters": [
+        {
+            "id": "filepath",
+            "label": "Path:",
+            "type": "ultiflow::file",
+            "config": {
+                "fileChooser": {
+                    "type": "file",
+                    "action": "load"
+                }
+            }
+        }
+    ]
+}
+```
+
+Lets explain each key:
+* `id`: identifier of the operator
+* `title`
+* `type`: Type of the operator. For the moment, the value is always `operator`.
+* `inputs`: Inputs of the operators. It is a dictionnary. Each key represent the input's identifier, each value a hash
+containing its properties. Currently, the only property is `label` that defines how the input is displayed on the
+operator.
+* `outputs`: Outputs of the operators. The structure is similar to `inputs`.
+* `parameters`: All parameters associated to the operator. It is an array containing multiple dictionnaries. Each
+dictionnary represents a property. Each dictionnary contains the following keys:
+  * `id`
+  * `label`
+  * `type`: field type. See more explanation below.
+  * `config`: configuration of the parameter. It depends on each field type.
+  
+Several examples of operators can be found in the `demo` module in the `operators` folder. The `all_fields` operator
+illustrates how to add all common field types.
+
+### What are field types and how to add a field type
+
+A field type is a way of displaying a parameter. For instance, you can represent a parameter by a simple text input,
+or you can represent it using a slider. All common field type are currently located in the `ultiflow` module.
+
+For instance, the `ultiflow::file` field type we used earlier is defined in the `static/fieldtypes/file/main.js` file of
+the `ultiflow` module. Let's say you wanted to create your own file field type. You could name it `custom_module::file`
+and define your own in the `static/fieldtypes/file/main.js` file of the `custom_module` module. The structure is
+always the same here.
