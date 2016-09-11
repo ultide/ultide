@@ -10,7 +10,7 @@ WIP and basic features are missing. Backward compatibility is NOT guaranteed. Do
 External contributions for features, documentation, or simply suggestion are very welcome. Don't hesitate to contact us
 via the Issue tab.
 
-![Screenshot](https://ultide.github.io/ultide-documentation/images/screenshot.png)
+![Screenshot](https://ultide.github.io/ultide-documentation/images/screenshot.png?version=2)
 
 Requirements
 ------------
