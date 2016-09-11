@@ -127,6 +127,27 @@ define([
 });
 ```
 
-As you might have guess, the first parameter is the request identifier (similar to an URL), the second is a hash
+As you might have guessed, the first parameter is the request identifier (similar to an URL), the second is a hash
 containing the request's data, and the third parameter is a callback method called when the server responds.
+
+Once the request is sent to the server, Ultide looks in all the modules `main.py` files for a method named
+`on_custom_request` (where `custom_request` is the request identifier). If it exists, it calls the method with three parameters:
+* `data`: data sent via the request
+* `response`: dictionary that can be modified, it is the data that will be sent back by the server.
+* `session_data`
+
+Please note that this architecture allows multiple modules to handle the same request.
+
+Here is how it could look like:
+```
+def on_custom_request(data, response, session_data):
+    response['custom_variable_1'] = 1
+    response['custom_variable_2'] = 2
+```
+
+See the `demo` module for a full demonstration.
+
+### How to add a tab
+
+See the `static/javascript/main.js` file in the `demo` module.
 
