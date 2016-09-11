@@ -81,3 +81,19 @@ the backspace key for that).
 display other parameters depending on the operator.
 8. You can add new operators in the process by drag and dropping operators in the `Library` widget.
 
+Technical documentation of the IDE
+----------------------------------
+
+This documentation is not up to par and we plan to improve it in the near term. If you can accelerate the process, don't
+hesitate to contribute.
+
+The main directory is comprised of 6 directories:
+* `data`: this directory contains data about the user sessions. It is expected that the software will provide a user
+management system where each user will have its own workspace, a username, a password... For the moment, only a "root"
+user exists.
+* `library`: this directory contains all the common modules. The Flowchart module is there.
+* `static`: Javascript and CSS files allowing to manage the UI.
+* `templates`: contains the main and only HTML file.
+* `ultide`: this is the core directory.
+* `workspaces`: this directory contains the workspaces of each user.
+
