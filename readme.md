@@ -44,9 +44,11 @@ It will launch a Flask server. Using Firefox / Chrome (IE compatibility not guar
 Flowchart usage
 ---------------
 
-Since this IDE was created for the flowchart editor, and it only contains it, we will describe it here for the moment.
+Since this IDE was created for the flowchart editor, and only contains it for the moment, we will describe it here.
 Please note that we plan to separate the flowchart editor from the IDE in the long run, that is why it has been
 implemented in a different module.
+
+The flowchart feature can be accessed by clicking on the `Flowchart` tab on the left.
 
 This module is based on the [jquery.flowchart.js](https://github.com/sdrdis/jquery.flowchart) plugin and uses the same
 [terminology](https://github.com/sdrdis/jquery.flowchart#terminology). Terms such as operators, links, connectors are
@@ -62,3 +64,15 @@ Once you click on the `Flowchart` tab, multiple widgets will appear :
 * The widget on the right is the `Parameters` widgets and allows you to set various parameters to your operators and
 links.
 
+In order to grasp the user interface, here is what you should do if you are new to this.
+1. Double click on the `My Project`
+2. Click on `Custom process`. The process should be displayed (see screenshot). The process contains three
+operators ("Load file", "All fields", "Save to file"). That are connected between them.
+3. You can move inside the process by dragging the mouse and you can zoom in / out using the scroll wheel.
+4. You can move operators by dragging their titles.
+5. Each operators can have inputs (on the left) and outputs (on the right). You can outputs by clicking on them and then
+clicking on an input.
+6. If you click on a link, the `Parameters` widget will allow you to change its color or delete it (you can also use
+the backspace key for that).
+7. If you click on the operators, the `Parameters` widget will allow you to change its title, delete it, and will also
+display other parameters depending on the operator.
