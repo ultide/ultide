@@ -66,7 +66,8 @@ Once you click on the `Flowchart` tab, multiple widgets will appear :
 * The widget on the right is the `Parameters` widgets and allows you to set various parameters to your operators and
 links.
 
-In order to grasp the user interface, here is what you should do if you are new to this.
+In order to grasp the user interface, here is what you should do if you are new to this:
+
 1. Double click on the `My Project`
 2. Click on `Custom process`. The process should be displayed (see screenshot). The process contains three
 operators ("Load file", "All fields", "Save to file"). That are connected between them.
