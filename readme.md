@@ -97,4 +97,36 @@ user exists.
 * `ultide`: this is the core directory.
 * `workspaces`: this directory contains the workspaces of each user.
 
-For the moment, 
+Currently, the core of the IDE is very similar to a web framework: it routes and dispatchs web requests to the modules.
+
+Each folder inside the `library` repository is a module. Inside each module can be found:
+* A `static` repository. If the module name (its folder name) is `custom_module`, then the file `static/file.txt` can be
+accessed via the URL `http://localhost:5000/static/modules/custom_module/file.txt`.
+* A `config.py` file. This is the module's configuration file. Three variable can be defined there:
+  * `name`: Name of the module.
+  * `main_js`: Javascript file to load in the browser when a new session starts.
+  * `requirejs_paths`: Dictionnary to be added in the requirejs paths.
+* A `main.py` file. This file handles web requests. See below.
+
+### How web requests are handled
+
+Since a lot of interactions can happen between the browser and the server, communications are handled using a web socket.
+
+On the browser side, the object handling the websocket communication with the server can be loaded using requirejs under
+the `app`. The function allowing to send a request is named `sendRequest`. Here is javascript code sending a custom
+request:
+
+```
+define([
+    'app',
+], function( app ) {
+    var data = {'key_1': 'data_1', 'key_2': 'data_2'};
+    app.sendRequest('custom_request', data, function(response) {
+        console.log(response);
+    });
+});
+```
+
+As you might have guess, the first parameter is the request identifier (similar to an URL), the second is a hash
+containing the request's data, and the third parameter is a callback method called when the server responds.
+
