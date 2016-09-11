@@ -68,7 +68,7 @@ links.
 
 In order to grasp the user interface, here is what you should do if you are new to this:
 
-1. Double click on the `My Project`
+1. Double click on the `My Project` folder.
 2. Click on `Custom process`. The process should be displayed (see screenshot). The process contains three
 operators ("Load file", "All fields", "Save to file"). That are connected between them.
 3. You can move inside the process by dragging the mouse and you can zoom in / out using the scroll wheel.
@@ -79,3 +79,5 @@ clicking on an input.
 the backspace key for that).
 7. If you click on the operators, the `Parameters` widget will allow you to change its title, delete it, and will also
 display other parameters depending on the operator.
+8. You can add new operators in the process by drag and dropping operators in the `Library` widget.
+
