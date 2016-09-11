@@ -48,3 +48,17 @@ Since this IDE was created for the flowchart editor, and it only contains it, we
 Please note that we plan to separate the flowchart editor from the IDE in the long run, that is why it has been
 implemented in a different module.
 
+This module is based on the [jquery.flowchart.js](https://github.com/sdrdis/jquery.flowchart) plugin and uses the same
+[terminology](https://github.com/sdrdis/jquery.flowchart#terminology). Terms such as operators, links, connectors are
+defined there.
+
+We only need to define one additional term. A process is where you add all your operators, links, and define their
+parameters.
+
+Once you click on the `Flowchart` tab, multiple widgets will appear :
+* The `Library` widget contains all common operators you can add to your process.
+* The `Workspace` widget contains all operators and processes you created yourself.
+* The central widget displays the current process. At the begining, no process is loaded.
+* The widget on the right is the `Parameters` widgets and allows you to set various parameters to your operators and
+links.
+
