@@ -217,3 +217,12 @@ For instance, the `ultiflow::file` field type we used earlier is defined in the 
 the `ultiflow` module. Let's say you wanted to create your own file field type. You could name it `custom_module::file`
 and define your own in the `static/fieldtypes/file/main.js` file of the `custom_module` module. The structure is
 always the same here.
+
+### Where is the process file generated
+
+Currently, the process file is generated under the file `workspaces/1/My Project/operators/custom_operator/config.json`.
+The structure of the file is similar to the operators' files described above, expect there is an additional `process` key.
+The value contains three keys:
+* `operators`
+* `links`
+* `parameters`
