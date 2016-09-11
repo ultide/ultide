@@ -1,0 +1,24 @@
+{
+    "id": "demo::save_file",
+    "title": "Save to file",
+    "type": "operator",
+    "inputs": {
+        "data": {
+            "label": "Data"
+        }
+    },
+    "outputs": {},
+    "parameters": [
+        {
+            "id": "filepath",
+            "label": "Path:",
+            "type": "ultiflow::file",
+            "config": {
+                "fileChooser": {
+                    "type": "file",
+                    "action": "save"
+                }
+            }
+        }
+    ]
+}

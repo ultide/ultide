@@ -1,0 +1,22 @@
+{
+    "id": "demo::multiple_inputs_outputs",
+    "title": "Multiple Ins/Outs",
+    "type": "operator",
+    "inputs": {
+        "input_1": {
+            "label": "Input 1"
+        },
+        "input_2": {
+            "label": "Input 2"
+        }
+    },
+    "outputs": {
+        "output_1": {
+            "label": "Output 1"
+        },
+        "output_2": {
+            "label": "Output 2"
+        }
+    },
+    "parameters": []
+}

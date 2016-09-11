@@ -1,4 +1,4 @@
-define(['app'], function(app) {
+define(['helper'], function(helper) {
   return function(paramKey, $divs, config, cbReady, cbChange) {
     var self = this;
     
@@ -43,7 +43,7 @@ define(['app'], function(app) {
           cbChange(self);
         }
       };
-      app.fileChooser(fileChooserConfig);
+      helper.fileChooser(fileChooserConfig);
     });
     
     

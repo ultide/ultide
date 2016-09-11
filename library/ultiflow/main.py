@@ -21,12 +21,15 @@ def get_operators_infos(path):
             config_path = item_path + os.path.sep + 'config.json'
             if (os.path.isfile(config_path)):
                 config = None
-                with open(config_path, 'r') as f:
-                    config = json.load(f)
-                config['path'] = config_path
-                operator_id = config['id']
-                operators_tree[operator_id] = True
-                operators_list[operator_id] = config
+                try:
+                    with open(config_path, 'r') as f:
+                        config = json.load(f)
+                    config['path'] = config_path
+                    operator_id = config['id']
+                    operators_tree[operator_id] = True
+                    operators_list[operator_id] = config
+                except:
+                    pass # todo
             else:
                 inside_operators_tree, inside_operators_list = get_operators_infos(item_path)
                 operators_tree[item] = inside_operators_tree

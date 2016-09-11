@@ -1,6 +1,7 @@
 define([
     'app',
     'ultiflow',
+    'ultiflow-lib-mousewheel',
     'ultiflow-lib-panzoom',
     'ultiflow-lib-flowchart'], function( app, ultiflow ) {
     $.widget( "ultiflow.uf_flowchart", {
@@ -257,7 +258,15 @@ define([
 
             currentProcessData.process.operators = flowchartData.operators;
             currentProcessData.process.links = flowchartData.links;
+            
+            var operatorsParameters = Object.keys(currentProcessData.process.parameters)
+            for (var operatorId in operatorsParameters) {
+                if (typeof currentProcessData.process.operators[operatorId] == 'undefined') {
+                    delete currentProcessData.process.parameters[operatorId];
+                }
+            }
 
+            console.log(currentProcessData.process.parameters);
             app.triggerEvent('ultiflow::process_change_detected');
 
             this._refreshMiniViewContent(flowchartData);

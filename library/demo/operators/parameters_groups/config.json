@@ -1,0 +1,59 @@
+{
+    "id": "demo::parameters_groups",
+    "title": "Groups of parameters",
+    "type": "operator",
+    "inputs": {
+        "input": {
+            "label": "Input"
+        }
+    },
+    "outputs": {
+        "output": {
+            "label": "Output"
+        }
+    },
+    "parameters": [
+        {
+            "title": "Parameters group 1",
+            "fields": [
+                {
+                    "id": "param_1_1",
+                    "label": "Parameter 1:",
+                    "type": "ultiflow::text",
+                    "config": {
+                        "default": "Default value"
+                    }
+                },
+                {
+                    "id": "param_1_2",
+                    "label": "Parameter 2:",
+                    "type": "ultiflow::text",
+                    "config": {
+                        "default": "Default value"
+                    }
+                }
+            ]
+        },
+        {
+            "title": "Parameters group 2",
+            "fields": [
+                {
+                    "id": "param_2_1",
+                    "label": "Parameter 1:",
+                    "type": "ultiflow::text",
+                    "config": {
+                        "default": "Default value"
+                    }
+                },
+                {
+                    "id": "param_2_2",
+                    "label": "Parameter 2:",
+                    "type": "ultiflow::text",
+                    "config": {
+                        "default": "Default value"
+                    }
+                }
+            ]
+        }
+    ]
+}

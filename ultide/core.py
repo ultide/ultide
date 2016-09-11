@@ -35,7 +35,7 @@ def refresh_users_modules(session_data):
                 modules_infos[module]['main'] = module_py
                 
             if (os.path.isfile(config_path)):
-                module_config = imp.load_source('module_config', config_path)
+                module_config = imp.load_source('module_config_' + module, config_path)
                 
                 modules_infos[module]['config'] = module_config
     
@@ -63,13 +63,22 @@ def on_write_file(data, response, session_data):
     file_path = data['path']
     content = data['content']
     response['error'] = False
-    print 'content', content
-    print 'toto'
     try:
         with open(file_path, 'w') as outfile:
             outfile.write(content.encode('utf8'))
     except:
         response['error'] = sys.exc_info()[0]
+        
+def on_list_files(data, response, session_data):
+    path = data['path']
+    
+    response['parent'] = os.path.abspath(os.path.join(path, os.pardir))
+    response['ds'] = os.path.sep
+    
+    for dirname, dirnames, filenames in os.walk(path):
+        response['dirs'] = dirnames
+        response['files'] = filenames
+        break
 
 def on_get_js(data, response, session_data):
     user = session_data['user']
@@ -80,6 +89,7 @@ def on_get_js(data, response, session_data):
         module_infos = session_data['modules_infos'][module_name]
         if ('config' in module_infos):
             config = module_infos['config']
+            print 'config', module_name, config
             if (hasattr(config, 'requirejs_paths')):
                 require_paths.update(config.requirejs_paths)
             if (hasattr(config, 'main_js')):

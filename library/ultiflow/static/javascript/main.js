@@ -11,7 +11,7 @@ define([
   $designView = $('<div class="uf_design_view"></div>')
   $mainView.main_view('createView', 'flowchart', $designView);
 
-  $mainNavBar.main_nav_bar('addButton', 'flowchart', 'Flowchart', '', function() {
+  $mainNavBar.main_nav_bar('addButton', 'flowchart', 'Flowchart', '', 10, function() {
     $mainView.main_view('showView', 'flowchart');
     $mainNavBar.main_nav_bar('activateButton', 'flowchart');
   });

@@ -1,0 +1,166 @@
+{
+    "id": "demo::all_fields",
+    "title": "All fields",
+    "type": "operator",
+    "inputs": {
+        "input": {
+            "label": "Input"
+        }
+    },
+    "outputs": {
+        "output": {
+            "label": "Output"
+        }
+    },
+    "parameters": [
+        {
+            "id": "single_line_text",
+            "label": "Text example:",
+            "type": "ultiflow::text",
+            "config": {
+                "default": "Default text"
+            }
+        },
+        {
+            "id": "single_line_text_css",
+            "label": "Text example (modified css):",
+            "type": "ultiflow::text",
+            "config": {
+                "default": "Default text",
+                "css": {
+                    "color": "red"
+                }
+            }
+        },
+        {
+            "id": "number",
+            "label": "Number:",
+            "type": "ultiflow::number",
+            "config": {
+                "default": 0
+            }
+        },
+        {
+            "id": "textarea",
+            "label": "Textarea (modified attr):",
+            "type": "ultiflow::textarea",
+            "config": {
+                "attr": {
+                    "rows": 10
+                },
+                "default": "Default text"
+            }
+        },
+        {
+            "id": "file",
+            "label": "File:",
+            "type": "ultiflow::file",
+            "config": {
+                "fileChooser": {
+                    "type": "file",
+                    "action": "load"
+                }
+            }
+        },
+        {
+            "id": "select",
+            "label": "Select:",
+            "type": "ultiflow::select",
+            "config": {
+                "options": [
+                    {"value": "first", "label": "First choice"},
+                    {"value": "second", "label": "Second choice"},
+                    {"value": "third", "label": "Third choice"}
+                ],
+                "default": "first"
+            }
+        },
+        {
+            "id": "choices_checkboxes",
+            "label": "Choices (checkboxes):",
+            "type": "ultiflow::choices",
+            "config": {
+                "options": [
+                    {"value": "first", "label": "First choix"},
+                    {"value": "second", "label": "Second choix"},
+                    {"value": "third", "label": "Third choix"}
+                ],
+                "type": "checkbox",
+                "default": {
+                    "first": true,
+                    "second": true,
+                    "third": false
+                }
+            }
+        },
+        {
+            "id": "choices_radios",
+            "label": "Choices (radios):",
+            "type": "ultiflow::choices",
+            "config": {
+                "options": [
+                    {"value": "first", "label": "First choix"},
+                    {"value": "second", "label": "Second choix"},
+                    {"value": "third", "label": "Third choix"}
+                ],
+                "type": "radio",
+                "default": {
+                    "first": false,
+                    "second": false,
+                    "third": true
+                }
+            }
+        },
+        {
+            "id": "slider",
+            "label": "Slider:",
+            "type": "ultiflow::slider",
+            "config": {
+                "min": 0,
+                "max": 1,
+                "step": 0.05,
+                "default": 0.75
+            }
+        },
+        {
+            "id": "slider",
+            "label": "Slider:",
+            "type": "ultiflow::slider",
+            "config": {
+                "min": 0,
+                "max": 1,
+                "step": 0.05,
+                "default": 0.75
+            }
+        },
+        {
+            "id": "list",
+            "label": "List:",
+            "type": "ultiflow::list",
+            "config": {
+                "fieldType": "ultiflow::text",
+                "fieldTypeConfig": {
+                    "default": "Default"
+                }
+            }
+        },
+        {
+            "id": "list",
+            "label": "List:",
+            "type": "ultiflow::list",
+            "config": {
+                "fieldType": "ultiflow::text",
+                "fieldTypeConfig": {
+                    "default": "Default"
+                }
+            }
+        },
+        {
+            "id": "operator",
+            "label": "Operator:",
+            "type": "ultiflow::operator",
+            "config": {
+            }
+        }
+    ]
+}
