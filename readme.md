@@ -8,7 +8,7 @@ Please note this is an Alpha version of UltIDE that was released since multiple 
 WIP and basic features are missing. Backward compatibility is NOT guaranteed. Documentation is not up to par.
 
 External contributions for features, documentation, or simply suggestion are very welcome. Don't hesitate to contact us
-via the Issue tab.
+via the `Issues` tab.
 
 ![Screenshot](https://ultide.github.io/ultide-documentation/images/screenshot.png?version=2)
 
@@ -97,3 +97,4 @@ user exists.
 * `ultide`: this is the core directory.
 * `workspaces`: this directory contains the workspaces of each user.
 
+For the moment, 
