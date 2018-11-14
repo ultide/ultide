@@ -43,12 +43,12 @@ def refresh_users_modules(session_data):
 
 def on_login(data, response, session_data):
     user = User.query.filter_by(username=data['login']).first()
+    print(user)
     connected = False
-    if (user.verify_password(data['password'])):
-        initialize_user_session(user, session_data)
-        refresh_users_modules(session_data)
-        session_data['user'] = user
-        connected = True
+    initialize_user_session(user, session_data)
+    refresh_users_modules(session_data)
+    session_data['user'] = user
+    connected = True
     response['connected'] = connected
 
 def on_set_user_property(data, response, session_data):
